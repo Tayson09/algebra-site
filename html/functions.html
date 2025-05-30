@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Análise Completa de Funções - ÁlgebraLab</title>
+  <link rel="stylesheet" href="/assets/css/functions.css" />
+  <style>
+    /* Estilos adicionais para melhorar a experiência */
+    .info-icon {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: rgba(127, 127, 213, 0.3);
+      color: #d1d1ff;
+      text-align: center;
+      line-height: 18px;
+      font-size: 0.8rem;
+      cursor: help;
+      margin-left: 0.5rem;
+      font-style: normal;
+    }
+    
+    .coef-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .coef-wrapper label {
+      width: 30px;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  
+  <nav class="glass-nav">
+    <div class="nav-content">
+      <h1 class="logo">ÁlgebraLab</h1>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="vectors.html">Vetores</a>
+        <a href="functions.html" class="active">Funções</a>
+        <a href="spaces.html">Espaços</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="functions-main">
+    <!-- Seletor de Modo -->
+    <div class="mode-selector">
+      <button class="mode-btn active" data-mode="single">Função Única</button>
+      <button class="mode-btn" data-mode="compare">Comparar Funções</button>
+      <button class="mode-btn" data-mode="operations">Operações</button>
+      <button class="info-btn" id="helpToggle">Modo Explicação</button>
+    </div>
+
+    <!-- Painel de Função Única -->
+    <section class="function-panel single-mode" id="single-panel">
+      <h3>Função Principal <span class="info-icon" data-info="single-function">ⓘ</span></h3>
+      
+      <div class="function-type-selector">
+        <label for="functionType">Tipo:</label>
+        <select id="functionType">
+          <option value="polynomial">Polinomial</option>
+          <option value="linear">Linear (1º grau)</option>
+          <option value="quadratic">Quadrática (2º grau)</option>
+          <option value="trigonometric">Trigonométrica</option>
+          <option value="exponential">Exponencial</option>
+        </select>
+      </div>
+
+      <div class="function-controls" id="function-controls">
+        <!-- Controles dinâmicos serão gerados por JS -->
+      </div>
+
+      <div class="domain-controls">
+        <label>Domínio:</label>
+        <input type="number" id="domainMin" value="-10" step="1">
+        <span>≤ x ≤</span>
+        <input type="number" id="domainMax" value="10" step="1">
+      </div>
+    </section>
+
+    <!-- Painel de Comparação (inicialmente oculto) -->
+    <section class="function-panel compare-mode" id="compare-panel" style="display:none">
+      <h3>Comparar Funções <span class="info-icon" data-info="compare-function">ⓘ</span></h3>
+      
+      <!-- Função 1 -->
+      <div class="function-group">
+        <h4>Função 1 (f)</h4>
+        <div class="function-type-selector">
+          <label>Tipo:</label>
+          <select id="functionType1">
+            <option value="polynomial">Polinomial</option>
+            <option value="linear">Linear</option>
+            <option value="quadratic">Quadrática</option>
+          </select>
+        </div>
+        <div class="function-controls" id="function-controls1"></div>
+      </div>
+      
+      <!-- Função 2 -->
+      <div class="function-group">
+        <h4>Função 2 (g)</h4>
+        <div class="function-type-selector">
+          <label>Tipo:</label>
+          <select id="functionType2">
+            <option value="polynomial">Polinomial</option>
+            <option value="linear">Linear</option>
+            <option value="quadratic">Quadrática</option>
+          </select>
+        </div>
+        <div class="function-controls" id="function-controls2"></div>
+      </div>
+    </section>
+
+    <!-- Painel de Operações (inicialmente oculto) -->
+    <section class="function-panel operations-mode" id="operations-panel" style="display:none">
+      <h3>Operações entre Funções <span class="info-icon" data-info="operations-function">ⓘ</span></h3>
+      
+      <!-- Função 1 -->
+      <div class="function-group">
+        <h4>Função 1 (f)</h4>
+        <div class="function-type-selector">
+          <label>Tipo:</label>
+          <select id="functionTypeOp1">
+            <option value="polynomial">Polinomial</option>
+            <option value="linear">Linear</option>
+            <option value="quadratic">Quadrática</option>
+          </select>
+        </div>
+        <div class="function-controls" id="function-controlsOp1"></div>
+      </div>
+      
+      <!-- Função 2 -->
+      <div class="function-group">
+        <h4>Função 2 (g)</h4>
+        <div class="function-type-selector">
+          <label>Tipo:</label>
+          <select id="functionTypeOp2">
+            <option value="polynomial">Polinomial</option>
+            <option value="linear">Linear</option>
+            <option value="quadratic">Quadrática</option>
+          </select>
+        </div>
+        <div class="function-controls" id="function-controlsOp2"></div>
+      </div>
+      
+      <!-- Operações -->
+      <div class="operation-controls">
+        <button class="operation-btn" data-op="add">f + g</button>
+        <button class="operation-btn" data-op="sub">f - g</button>
+        <button class="operation-btn" data-op="mul">f × g</button>
+      </div>
+    </section>
+
+    <!-- Container do Gráfico -->
+    <div class="graph-container">
+      <canvas id="functionCanvas" width="800" height="500"></canvas>
+      
+      <div class="graph-controls">
+        <button id="zoomIn">+</button>
+        <button id="zoomOut">-</button>
+        <button id="resetView">⟳</button>
+      </div>
+    </div>
+
+    <!-- Painel de Propriedades -->
+    <div class="properties-panel">
+      <h3>Propriedades <span class="info-icon" data-info="function-props">ⓘ</span></h3>
+      <div id="functionProperties">
+        <p>Nenhuma função analisada ainda.</p>
+      </div>
+    </div>
+
+    <!-- Modo Explicação (fixo no canto) -->
+    <div class="explanation-panel" id="explanationPanel">
+      <div class="explanation-content">
+        <h3 id="explanationTitle">Bem-vindo ao Analisador de Funções!</h3>
+        <p id="explanationText">
+          Selecione um modo e comece a explorar. Clique em ⓘ para obter explicações sobre cada elemento.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <script src="/assets/js/functions.js"></script>
+</body>
+</html>

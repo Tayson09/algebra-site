@@ -1,0 +1,442 @@
+/* =========================================
+   Reset e Estilos Base
+   ========================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(45deg, #0a081f, #1a173a, #2d2a4e);
+  color: #ffffff;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================================
+   Navegação
+   ========================================= */
+.glass-nav {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.logo {
+  background: linear-gradient(45deg, #7f7fd5, #86a8e7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  color: #d1d1ff;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+  background: rgba(127, 127, 213, 0.2);
+}
+
+.nav-links a.active {
+  background: linear-gradient(45deg, #7f7fd5, #86a8e7);
+  color: white;
+}
+
+/* =========================================
+   Conteúdo Principal
+   ========================================= */
+.functions-main {
+  flex: 1;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================================
+   Seletor de Modo
+   ========================================= */
+.mode-selector {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.mode-btn {
+  background: rgba(127, 127, 213, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 0.7rem 1.2rem;
+  color: #d1d1ff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mode-btn.active {
+  background: linear-gradient(45deg, #7f7fd5, #86a8e7);
+  color: white;
+}
+
+.mode-btn:hover:not(.active) {
+  background: rgba(127, 127, 213, 0.3);
+}
+
+.info-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 0.7rem 1.2rem;
+  color: #F6E05E;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+/* =========================================
+   Painéis de Função
+   ========================================= */
+.function-panel {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+}
+
+.function-panel h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(45deg, #fff, #86a8e7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: flex;
+  align-items: center;
+}
+
+.function-group {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.function-group:last-child {
+  margin-bottom: 0;
+}
+
+.function-group h4 {
+  color: #d1d1ff;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.function-type-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.function-type-selector label {
+  color: #d1d1ff;
+}
+
+.function-type-selector select {
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  color: black;
+}
+
+.function-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.function-controls > * {
+  display: flex;
+  flex-direction: column;
+}
+
+.function-controls label {
+  margin-bottom: 0.5rem;
+  color: #d1d1ff;
+  font-size: 0.9rem;
+}
+
+.function-controls input,
+.function-controls select {
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.domain-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+}
+
+.domain-controls label {
+  color: #d1d1ff;
+}
+
+.domain-controls input {
+  width: 80px;
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  text-align: center;
+}
+
+/* =========================================
+   Controles de Operações
+   ========================================= */
+.operation-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  justify-content: center;
+}
+
+.operation-btn {
+  background: rgba(127, 127, 213, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 0.8rem 1.5rem;
+  color: #d1d1ff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.operation-btn:hover {
+  background: rgba(127, 127, 213, 0.3);
+}
+
+/* =========================================
+   Container do Gráfico
+   ========================================= */
+.graph-container {
+  position: relative;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+  padding: 1.5rem;
+  margin-top: 1rem;
+  overflow: hidden;
+}
+
+.graph-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(127, 127, 213, 0.4), transparent);
+}
+
+#functionCanvas {
+  width: 100%;
+  height: 500px;
+  display: block;
+  background: rgba(30, 30, 30, 0.3);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* =========================================
+   Controles do Gráfico
+   ========================================= */
+.graph-controls {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.graph-controls button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(30, 30, 40, 0.8);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  transition: all 0.2s ease;
+}
+
+.graph-controls button:hover {
+  background: rgba(127, 127, 213, 0.3);
+  transform: scale(1.1);
+}
+
+/* =========================================
+   Painel de Propriedades
+   ========================================= */
+.properties-panel {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.properties-panel h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  color: #86a8e7;
+}
+
+.properties-panel p {
+  margin: 0.5rem 0;
+  line-height: 1.6;
+}
+
+.properties-panel strong {
+  color: #4FD1C5;
+}
+
+/* =========================================
+   Painel de Explicação
+   ========================================= */
+.explanation-panel {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 350px;
+  background: rgba(30, 30, 50, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: 1px solid rgba(127, 127, 213, 0.4);
+  padding: 1.2rem;
+  z-index: 1000;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
+}
+
+.explanation-content h3 {
+  color: #86a8e7;
+  margin-bottom: 0.8rem;
+  font-size: 1.2rem;
+}
+
+.explanation-content p {
+  line-height: 1.5;
+  color: #d1d1ff;
+}
+
+/* =========================================
+   Responsividade
+   ========================================= */
+@media (max-width: 768px) {
+  .nav-content {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .nav-links {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .mode-selector {
+    flex-direction: column;
+  }
+  
+  .info-btn {
+    margin-left: 0;
+  }
+  
+  .function-controls {
+    grid-template-columns: 1fr;
+  }
+  
+  .graph-controls {
+    top: 15px;
+    right: 15px;
+  }
+  
+  .explanation-panel {
+    width: 90%;
+    left: 5%;
+    right: 5%;
+  }
+}
+
+@media (max-width: 480px) {
+  .domain-controls {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .operation-controls {
+    flex-direction: column;
+  }
+  
+  .graph-controls {
+    flex-direction: row;
+    top: 10px;
+    right: 10px;
+  }
+  
+  .function-group {
+    padding: 0.5rem;
+  }
+}

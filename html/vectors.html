@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Operações Vetoriais - ℝⁿ</title>
+  <link rel="stylesheet" href="/assets/css/vectores.css" />
+</head>
+<body>
+  <nav class="glass-nav">
+    <div class="nav-content">
+      <h1 class="logo">ÁlgebraLab</h1>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="vectors.html" class="active">Vetores</a>
+        <a href="functions.html">Funções</a>
+        <a href="spaces.html">Espaços</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="vector-operations">
+    <section class="vector-inputs">
+      <!-- Vetor 1 -->
+      <div class="vector-group" id="vector1">
+        <h3>Vetor 1</h3>
+        <div class="components"></div>
+        <button class="add-component" data-vector="1">+</button>
+      </div>
+
+      <!-- Vetor 2 -->
+      <div class="vector-group" id="vector2">
+        <h3>Vetor 2</h3>
+        <div class="components"></div>
+        <button class="add-component" data-vector="2">+</button>
+      </div>
+    </section>
+
+    <div class="vector-controls">
+      <button class="vector-btn" data-operation="add">Soma</button>
+      <button class="vector-btn" data-operation="dot">Produto Escalar</button>
+      <button class="vector-btn" data-operation="cross">Produto Vetorial</button>
+    </div>
+
+    <div class="result-container glass-box">
+      <h4>Resultado:</h4>
+      <div id="vectorResult" class="result-display"></div>
+    </div>
+  </main>
+
+  <script src="/assets/js/vectors.js"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espaços Vetoriais - ÁgebraLab</title>
+    <link rel="stylesheet" href="/assets/css/spaces.css">
+</head>
+<body>
+    <nav class="glass-nav">
+        <div class="nav-content">
+            <h1 class="logo">ÁlgebraLab</h1>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="vectors.html">Vetores</a>
+                <a href="functions.html">Funções</a>
+                <a href="spaces.html" class="active">Espaços</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="vector-space">
+        <section class="vector-space-controls">
+            <div class="vector-manager">
+                <h2>Vetores do Espaço <span class="info-icon" data-info="vectors-info">ⓘ</span></h2>
+                <div class="dimension-selector">
+                    <label for="dimension">Dimensão:</label>
+                    <select id="dimension">
+                        <option value="2">2D</option>
+                        <option value="3" selected>3D</option>
+                        <option value="4">4D</option>
+                        <option value="5">5D</option>
+                    </select>
+                </div>
+                <div id="vectorsContainer" class="vectors-container">
+                    <!-- Vetores serão adicionados dinamicamente -->
+                </div>
+                <button class="add-vector-btn" id="addVectorBtn">+ Novo Vetor</button>
+            </div>
+
+            <div class="scalar-inputs">
+                <h2>Combinação Linear <span class="info-icon" data-info="linear-combination-info">ⓘ</span></h2>
+                <div id="scalarsContainer" class="scalars-grid">
+                    <!-- Campos de escalar serão gerados dinamicamente -->
+                </div>
+                <button class="calculate-btn" id="checkCombination">Calcular Combinação</button>
+            </div>
+        </section>
+
+        <div class="space-operations">
+            <button class="operation-btn" data-operation="independence">Verificar LI/LD</button>
+            <button class="operation-btn" data-operation="basis">Verificar Base</button>
+            <button class="operation-btn" data-operation="subspace">Testar Subespaço</button>
+            <button class="operation-btn" data-operation="span">Calcular Espaço Gerado</button>
+        </div>
+
+        <div class="result-container glass-box">
+            <h3>Resultado:</h3>
+            <div id="spaceResult" class="result-display"></div>
+            <div id="matrixDisplay" class="matrix-display"></div>
+            <div id="vectorDisplay" class="vector-display"></div>
+        </div>
+    </main>
+
+    <script src="/assets/js/spaces.js"></script>
+</body>
+</html>
