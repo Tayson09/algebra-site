@@ -687,10 +687,7 @@ function plotFunction(func, color, label) {
         break;
     }
   }
-  
-  // ==== CONTROLES DE VISUALIZAÇÃO ====
-  
-  // Botões de operação
+
   document.querySelectorAll('.operation-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       currentOperation = btn.dataset.op;

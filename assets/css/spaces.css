@@ -62,6 +62,11 @@ body {
   color: white;
 }
 
+.logo a{
+    text-decoration: none;
+    color: inherit;
+}
+
 .vector-space {
     max-width: 1200px;
     margin: 2rem auto;

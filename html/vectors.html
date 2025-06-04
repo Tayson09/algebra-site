@@ -2,13 +2,150 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <title>Operações Vetoriais - ℝⁿ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manipulação Vetorial - ℝⁿ</title>
   <link rel="stylesheet" href="/assets/css/vectores.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Estilos adicionais para a nova funcionalidade */
+    .vector-operations {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 2rem;
+    }
+    
+    @media (max-width: 992px) {
+      .vector-operations {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .vector-graph {
+      position: relative;
+      height: 400px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+    }
+    
+    .graph-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    
+    .graph-controls select {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      padding: 0.5rem;
+      flex-grow: 1;
+    }
+    
+    .graph-controls button {
+      flex-grow: 1;
+    }
+    
+    .vector-properties {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    .property-card {
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 12px;
+      padding: 1.2rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    
+    .property-card h4 {
+      font-size: 1rem;
+      margin-bottom: 0.8rem;
+      color: #86a8e7;
+    }
+    
+    .property-value {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #91eae4;
+    }
+    
+    .coordinate-system {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 0.9rem;
+    }
+    
+    .vector-history {
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 12px;
+      padding: 1.2rem;
+      margin-top: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    
+    .history-item {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .vector-visualization {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .vector-line {
+      position: absolute;
+      height: 3px;
+      transform-origin: 0 0;
+      z-index: 10;
+    }
+    
+    .vector-label {
+      position: absolute;
+      color: white;
+      font-size: 0.9rem;
+      font-weight: bold;
+      z-index: 20;
+    }
+    
+    .vector-arrow {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      z-index: 15;
+    }
+    
+    .vector-info {
+      position: absolute;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      z-index: 30;
+      display: none;
+    }
+    
+    .vector-line:hover + .vector-info {
+      display: block;
+    }
+  </style>
 </head>
 <body>
   <nav class="glass-nav">
     <div class="nav-content">
-      <h1 class="logo">ÁlgebraLab</h1>
+      <h1 class="logo"><a href="index.html">ÁlgebraLab</a></h1>
       <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="vectors.html" class="active">Vetores</a>
@@ -19,32 +156,120 @@
   </nav>
 
   <main class="vector-operations">
-    <section class="vector-inputs">
-      <!-- Vetor 1 -->
-      <div class="vector-group" id="vector1">
-        <h3>Vetor 1</h3>
-        <div class="components"></div>
-        <button class="add-component" data-vector="1">+</button>
+    <section class="vector-input-section">
+      <div class="vector-inputs">
+        <!-- Vetor 1 -->
+        <div class="vector-group" id="vector1">
+          <h3><i class="fas fa-vector-square"></i> Vetor 1</h3>
+          <div class="components"></div>
+          <div class="vector-actions">
+            <button class="vector-action-btn" data-action="clear" data-vector="1">
+              <i class="fas fa-trash-alt"></i> Limpar
+            </button>
+            <button class="add-component" data-vector="1">
+              <i class="fas fa-plus"></i> Componente
+            </button>
+          </div>
+        </div>
+
+        <!-- Vetor 2 -->
+        <div class="vector-group" id="vector2">
+          <h3><i class="fas fa-vector-square"></i> Vetor 2</h3>
+          <div class="components"></div>
+          <div class="vector-actions">
+            <button class="vector-action-btn" data-action="clear" data-vector="2">
+              <i class="fas fa-trash-alt"></i> Limpar
+            </button>
+            <button class="add-component" data-vector="2">
+              <i class="fas fa-plus"></i> Componente
+            </button>
+          </div>
+        </div>
       </div>
 
-      <!-- Vetor 2 -->
-      <div class="vector-group" id="vector2">
-        <h3>Vetor 2</h3>
-        <div class="components"></div>
-        <button class="add-component" data-vector="2">+</button>
+      <div class="vector-controls">
+        <button class="vector-btn" data-operation="add">
+          <i class="fas fa-plus-circle"></i> Soma
+        </button>
+        <button class="vector-btn" data-operation="dot">
+          <i class="fas fa-times"></i> Produto Escalar
+        </button>
+        <button class="vector-btn" data-operation="cross">
+          <i class="fas fa-times-circle"></i> Produto Vetorial
+        </button>
+      </div>
+      
+      <div class="vector-controls">
+        <button class="vector-btn" data-operation="norm">
+          <i class="fas fa-ruler"></i> Norma
+        </button>
+        <button class="vector-btn" data-operation="angle">
+          <i class="fas fa-angle-right"></i> Ângulo
+        </button>
+        <button class="vector-btn" data-operation="projection">
+          <i class="fas fa-arrow-down"></i> Projeção
+        </button>
+      </div>
+      
+      <div class="vector-controls">
+        <button class="vector-btn" data-operation="save">
+          <i class="fas fa-save"></i> Salvar Vetores
+        </button>
+        <button class="vector-btn" data-operation="load">
+          <i class="fas fa-folder-open"></i> Carregar
+        </button>
+      </div>
+
+      <div class="result-container glass-box">
+        <h4><i class="fas fa-calculator"></i> Resultado:</h4>
+        <div id="vectorResult" class="result-display"></div>
       </div>
     </section>
-
-    <div class="vector-controls">
-      <button class="vector-btn" data-operation="add">Soma</button>
-      <button class="vector-btn" data-operation="dot">Produto Escalar</button>
-      <button class="vector-btn" data-operation="cross">Produto Vetorial</button>
-    </div>
-
-    <div class="result-container glass-box">
-      <h4>Resultado:</h4>
-      <div id="vectorResult" class="result-display"></div>
-    </div>
+    
+    <section class="vector-visualization-section">
+      <h3><i class="fas fa-chart-line"></i> Visualização Gráfica</h3>
+      
+      <div class="graph-controls">
+        <select id="dimension-select">
+          <option value="2D">Visualização 2D</option>
+          <option value="3D">Visualização 3D</option>
+          <option value="components">Componentes</option>
+        </select>
+        
+        <button class="vector-btn" id="rotate-btn">
+          <i class="fas fa-sync-alt"></i> Rotacionar
+        </button>
+      </div>
+      
+      <div class="vector-graph">
+        <div class="vector-visualization" id="vector-viz"></div>
+        <div class="coordinate-system">Sistema de Coordenadas: ℝ<sup>3</sup></div>
+      </div>
+      
+      <div class="vector-properties">
+        <div class="property-card">
+          <h4><i class="fas fa-ruler"></i> Norma V1</h4>
+          <div id="norm-v1" class="property-value">0.00</div>
+        </div>
+        <div class="property-card">
+          <h4><i class="fas fa-ruler"></i> Norma V2</h4>
+          <div id="norm-v2" class="property-value">0.00</div>
+        </div>
+        <div class="property-card">
+          <h4><i class="fas fa-angle-right"></i> Ângulo</h4>
+          <div id="angle-value" class="property-value">0.00°</div>
+        </div>
+        <div class="property-card">
+          <h4><i class="fas fa-project-diagram"></i> Produto Escalar</h4>
+          <div id="dot-value" class="property-value">0.00</div>
+        </div>
+      </div>
+      
+      <div class="vector-history">
+        <h4><i class="fas fa-history"></i> Histórico de Operações</h4>
+        <div id="history-list"></div>
+      </div>
+    </section>
   </main>
 
   <script src="/assets/js/vectors.js"></script>

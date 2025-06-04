@@ -71,6 +71,11 @@ body {
   color: white;
 }
 
+.logo a{
+    text-decoration: none;
+    color: inherit;
+}
+
 /* =========================================
    Conteúdo Principal
    ========================================= */
@@ -382,61 +387,145 @@ body {
   color: #d1d1ff;
 }
 
-/* =========================================
-   Responsividade
-   ========================================= */
+/* ================= RESPONSIVIDADE ================= */
+@media (max-width: 1200px) {
+    .container {
+        width: 95%;
+        padding: 0 10px;
+    }
+    
+    .content-section {
+        padding: 25px;
+    }
+    
+    .function-card {
+        width: calc(50% - 20px);
+    }
+}
+
 @media (max-width: 768px) {
-  .nav-content {
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .nav-links {
-    width: 100%;
-    justify-content: center;
-  }
-  
-  .mode-selector {
-    flex-direction: column;
-  }
-  
-  .info-btn {
-    margin-left: 0;
-  }
-  
-  .function-controls {
-    grid-template-columns: 1fr;
-  }
-  
-  .graph-controls {
-    top: 15px;
-    right: 15px;
-  }
-  
-  .explanation-panel {
-    width: 90%;
-    left: 5%;
-    right: 5%;
-  }
+    .header .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .logo {
+        margin-bottom: 15px;
+    }
+    
+    .nav-menu {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .nav-menu li {
+        margin: 5px;
+    }
+    
+    .function-card {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    .graph-container {
+        flex-direction: column;
+    }
+    
+    .graph-panel {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    .function-inputs {
+        flex-direction: column;
+    }
+    
+    .input-group {
+        width: 100%;
+        margin-bottom: 15px;
+    }
 }
 
 @media (max-width: 480px) {
-  .domain-controls {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .operation-controls {
-    flex-direction: column;
-  }
-  
-  .graph-controls {
-    flex-direction: row;
-    top: 10px;
-    right: 10px;
-  }
-  
-  .function-group {
-    padding: 0.5rem;
-  }
+    .page-title {
+        font-size: 1.8rem;
+    }
+    
+    .section-title {
+        font-size: 1.4rem;
+    }
+    
+    .function-card h3 {
+        font-size: 1.2rem;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-links {
+        margin: 15px 0;
+        justify-content: center;
+    }
+    
+    .footer-links a {
+        margin: 0 8px;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-bottom p {
+        margin-bottom: 10px;
+    }
+    
+    button {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+    
+    input, select {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Ajustes para orientação paisagem em dispositivos móveis */
+@media (max-height: 480px) and (orientation: landscape) {
+    .header {
+        padding: 0.8rem 0;
+    }
+    
+    .main-content {
+        padding: 1rem 0;
+    }
+    
+    .content-section {
+        padding: 15px;
+    }
+    
+    .function-card {
+        margin-bottom: 10px;
+    }
+}
+
+/* Melhorias para impressão */
+@media print {
+    .header, .footer, .function-inputs, .graph-controls {
+        display: none;
+    }
+    
+    .container {
+        width: 100%;
+        padding: 0;
+    }
+    
+    .content-section {
+        box-shadow: none;
+        border: 1px solid #ccc;
+        page-break-inside: avoid;
+    }
 }

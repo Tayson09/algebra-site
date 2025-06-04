@@ -64,6 +64,11 @@ body {
     color: white;
 }
 
+.logo a{
+    text-decoration: none;
+    color: inherit;
+}
+
 /* Hero Section */
 .hero {
     text-align: center;
