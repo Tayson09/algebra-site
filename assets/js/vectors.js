@@ -169,10 +169,40 @@ function renderVectors() {
     container.appendChild(axisLabel);
   };
 
-  // Eixos X, Y, Z
-  drawAxis(centerX, centerY, centerX + scale * 2.5, centerY, 'X');
-  drawAxis(centerX, centerY, centerX, centerY - scale * 2.5, 'Y');
-  drawAxis(centerX, centerY, centerX - scale * 1.2, centerY + scale * 1.2, 'Z');
+// Eixos X, Y, Z
+// define o deslocamento horizontal (em pixels)
+const deslocX = 3.5;
+
+// eixo X: antes era (centerX, centerY) → (centerX + scale*2.5, centerY)
+// agora: (centerX - deslocX, centerY) → (centerX - deslocX + scale*2.5, centerY)
+drawAxis(
+  centerX - deslocX,
+  centerY,
+  centerX - deslocX + scale * 2.5,
+  centerY,
+  'X'
+);
+
+// eixo Y: antes era (centerX, centerY) → (centerX, centerY - scale*2.5)
+// agora: (centerX - deslocX, centerY) → (centerX - deslocX, centerY - scale*2.5)
+drawAxis(
+  centerX - deslocX,
+  centerY,
+  centerX - deslocX,
+  centerY - scale * 2.5,
+  'Y'
+);
+
+// mantém o eixo Z inalterado (ou, se quiser alinhar igualmente, também poderia subtrair deslocX)
+
+drawAxis(
+  centerX,
+  centerY,
+  centerX - scale * 1.4,
+  centerY + scale * 1.4,
+  'Z'
+);
+
 
   // Função para desenhar um vetor
   const drawVector = (v, color, label) => {
