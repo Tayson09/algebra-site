@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Manipulação Vetorial - ℝⁿ</title>
-  <link rel="stylesheet" href="/assets/css/vectores.css" />
+  <link rel="stylesheet" href="../assets/css/vectores.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     /* Estilos adicionais para a nova funcionalidade */
@@ -13,13 +14,13 @@
       grid-template-columns: 1fr 1.5fr;
       gap: 2rem;
     }
-    
+
     @media (max-width: 992px) {
       .vector-operations {
         grid-template-columns: 1fr;
       }
     }
-    
+
     .vector-graph {
       position: relative;
       height: 400px;
@@ -28,14 +29,14 @@
       border: 1px solid rgba(255, 255, 255, 0.1);
       overflow: hidden;
     }
-    
+
     .graph-controls {
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
       margin: 1rem 0;
     }
-    
+
     .graph-controls select {
       background: rgba(255, 255, 255, 0.1);
       color: white;
@@ -44,37 +45,37 @@
       padding: 0.5rem;
       flex-grow: 1;
     }
-    
+
     .graph-controls button {
       flex-grow: 1;
     }
-    
+
     .vector-properties {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 1.5rem;
       margin-top: 2rem;
     }
-    
+
     .property-card {
       background: rgba(255, 255, 255, 0.04);
       border-radius: 12px;
       padding: 1.2rem;
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
-    
+
     .property-card h4 {
       font-size: 1rem;
       margin-bottom: 0.8rem;
       color: #86a8e7;
     }
-    
+
     .property-value {
       font-size: 1.4rem;
       font-weight: bold;
       color: #91eae4;
     }
-    
+
     .coordinate-system {
       position: absolute;
       bottom: 20px;
@@ -82,7 +83,7 @@
       color: rgba(255, 255, 255, 0.4);
       font-size: 0.9rem;
     }
-    
+
     .vector-history {
       background: rgba(255, 255, 255, 0.04);
       border-radius: 12px;
@@ -92,25 +93,25 @@
       max-height: 200px;
       overflow-y: auto;
     }
-    
+
     .history-item {
       padding: 0.5rem 0;
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
-    
+
     .vector-visualization {
       position: relative;
       width: 100%;
       height: 100%;
     }
-    
+
     .vector-line {
       position: absolute;
       height: 3px;
       transform-origin: 0 0;
       z-index: 10;
     }
-    
+
     .vector-label {
       position: absolute;
       color: white;
@@ -118,7 +119,7 @@
       font-weight: bold;
       z-index: 20;
     }
-    
+
     .vector-arrow {
       position: absolute;
       width: 0;
@@ -126,7 +127,7 @@
       border-style: solid;
       z-index: 15;
     }
-    
+
     .vector-info {
       position: absolute;
       background: rgba(0, 0, 0, 0.6);
@@ -136,12 +137,13 @@
       z-index: 30;
       display: none;
     }
-    
-    .vector-line:hover + .vector-info {
+
+    .vector-line:hover+.vector-info {
       display: block;
     }
   </style>
 </head>
+
 <body>
   <nav class="glass-nav">
     <div class="nav-content">
@@ -149,7 +151,7 @@
       <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="vectors.html" class="active">Vetores</a>
-        <a href="functions.html">-----</a>
+        <a href="functions.html">Funções</a>
         <a href="spaces.html">Espaços</a>
       </div>
     </div>
@@ -198,7 +200,7 @@
           <i class="fas fa-times-circle"></i> Produto Vetorial
         </button>
       </div>
-      
+
       <div class="vector-controls">
         <button class="vector-btn" data-operation="norm">
           <i class="fas fa-ruler"></i> Norma
@@ -210,7 +212,7 @@
           <i class="fas fa-arrow-down"></i> Projeção
         </button>
       </div>
-      
+
       <div class="vector-controls">
         <button class="vector-btn" data-operation="save">
           <i class="fas fa-save"></i> Salvar Vetores
@@ -225,27 +227,27 @@
         <div id="vectorResult" class="result-display"></div>
       </div>
     </section>
-    
+
     <section class="vector-visualization-section">
       <h3><i class="fas fa-chart-line"></i> Visualização Gráfica</h3>
-      
+
       <div class="graph-controls">
         <select id="dimension-select">
           <option value="2D">Visualização 2D</option>
           <option value="3D">Visualização 3D</option>
           <option value="components">Componentes</option>
         </select>
-        
+
         <button class="vector-btn" id="rotate-btn">
           <i class="fas fa-sync-alt"></i> Rotacionar
         </button>
       </div>
-      
+
       <div class="vector-graph">
         <div class="vector-visualization" id="vector-viz"></div>
         <div class="coordinate-system">Sistema de Coordenadas: ℝ<sup>3</sup></div>
       </div>
-      
+
       <div class="vector-properties">
         <div class="property-card">
           <h4><i class="fas fa-ruler"></i> Norma V1</h4>
@@ -264,7 +266,7 @@
           <div id="dot-value" class="property-value">0.00</div>
         </div>
       </div>
-      
+
       <div class="vector-history">
         <h4><i class="fas fa-history"></i> Histórico de Operações</h4>
         <div id="history-list"></div>
@@ -272,6 +274,7 @@
     </section>
   </main>
 
-  <script src="/assets/js/vectors.js"></script>
+  <script src="../assets/js/vectors.js"></script>
 </body>
+
 </html>
